@@ -1,0 +1,12 @@
+--- # playbook with handlers
+- hosts: all
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: install httpd server
+      action: yum name=httpd state=present
+      notify: restart-httpd
+  handlers:
+    - name: restart-httpd
+      action: service name=httpd state=restart

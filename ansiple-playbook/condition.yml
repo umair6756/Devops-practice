@@ -1,0 +1,13 @@
+--- # playbook with condition
+
+- hosts: developer
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: install apacha on debian
+      command: apt-get -y install apacha2
+      when: ansible_os_Family == "Debian"
+    - name: install httpd on redhat
+      command: yum -y install httpd
+      when: ansible_os_Family == "RedHat"

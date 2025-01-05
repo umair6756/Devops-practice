@@ -1,0 +1,22 @@
+# pod with Replication controller
+
+# Note : labels and selector are same key value
+
+kind: ReplicationController               
+apiVersion: v1
+metadata:
+  name: myreplica
+spec:
+  replicas: 2       # we specify how many same container created    
+  selector:        
+    myname: Umair                             
+  template:                
+    metadata:
+      name: testpod6
+      labels:            
+        myname: Umair
+    spec:
+     containers:
+      -  name: c00
+         image: ubuntu
+         command: ["/bin/bash", "-c", "while true; do echo Hello-Umair; sleep 5 ; done"]

@@ -1,0 +1,28 @@
+--- # Playbook with no task
+- hosts: all
+  user: anisble
+  become: yes
+  connection: ssh
+
+
+--- # Playbook with install httpd
+
+- hosts: all
+  user: ansible
+  become: yes
+  connection: ssh
+  task:
+    - name: install httpd on linux
+      action: yum name=httpd state=present
+
+
+--- # playbook with uninstall httpd 
+
+- hosts: all
+  user: ansible
+  become: yes
+  connection: ssh
+  task:
+    - name: uninstall httpd on linux
+      action: yum name=httpd state=absent
+
